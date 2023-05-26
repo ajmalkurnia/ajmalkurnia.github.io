@@ -1,0 +1,398 @@
+:root {
+  --pixel: 6px;
+  --red: 358;
+  --blue: 210;
+  --green: 115;
+  --current-hue: var(--blue);
+  
+  --main-card-color: hsl(var(--current-hue), 5%, 97%);
+  --main-color: var(--current-hue), 70%, 92% ;
+  --main-background-color: linear-gradient(hsl(var(--main-color), 0.8),
+    hsl(var(--main-color), 1));
+  --main-text-color: hsl(var(--current-hue), 70%, 4%);
+  --main-shadow-color: hsla(var(--current-hue), 30%, 2%, 0.5);
+  --main-on-hover-color: hsl(var(--current-hue), 70%, 32%);
+  --main-highlight-color: hsl(var(--current-hue), 70%, 52%);
+}
+
+.dark-theme {
+  --main-card-color: hsl(var(--current-hue), 3%, 4%);
+  --main-color: var(--current-hue), 15%, 4%;
+  --main-background-color: linear-gradient(hsl(var(--main-color), 0.8),
+      hsl(var(--main-color), 1));
+  --main-text-color: hsl(var(--current-hue), 20%, 96%);
+  --main-shadow-color: hsl(var(--main-color), 0.0);
+  --main-on-hover-color: hsl(var(--current-hue), 40%, 25%);
+  --main-highlight-color: hsl(var(--current-hue), 45%, 50%);
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  color: var(--main-text-color);
+  background-color: var(--main-background-color);
+  margin: 0;
+  transition: color 0.2s ease-in;
+}
+
+a {
+  color: var(--main-highlight-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--main-on-hover-color);
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Raleway", sans-serif;
+}
+
+/*--------------------------------------------------------------
+# main-banner
+--------------------------------------------------------------*/
+#main-banner {
+  width: 100%;
+  height: 100vh;
+  background: var(--main-background-color),
+    url("../img/background_bw.jpg") top right no-repeat;
+  background-size: cover;
+  transition: --main-background-color 2s ease;
+  position: absolute;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 80%;
+  left: 10%;
+  position: relative;
+  top: 10%;
+  background-color: var(--main-card-color);
+  box-shadow: 0px 1px 15px 3px var(--main-shadow-color);
+  transition: all 0.2s ease;
+  border-radius: 10px;
+}
+
+.intro {
+  margin: 1rem 2rem;
+}
+
+.intro h1 {
+  margin: 0;
+  font-size: 72px;
+  font-weight: 100;
+}
+
+.intro h2 {
+  font-size: 36px;
+  margin: 0;
+}
+
+.intro span {
+  color: var(--main-highlight-color);
+}
+
+.short-about {
+  width: 100%;
+  margin-bottom:20px;
+}
+
+.short-about h3 {
+  margin-left: 20px;
+}
+
+.short-about ul {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0px;
+}
+
+.job-title {
+  /*Where tf the padding comes from*/
+  border-top: 2px dashed var(--main-text-color);
+  height: 56px;
+  overflow: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.short-about ul::-webkit-scrollbar {
+  display: none;
+}
+
+.short-about li {
+  display: inline;
+  margin: 0 20px;
+  scroll-snap-align: center;
+}
+
+li.fe {
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.fe .dotted-menu{
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 1s, opacity 1s ease-out;
+}
+
+.fe:hover .dotted-menu {
+  visibility: visible;
+  opacity: 1;
+}
+
+.dev-mode {
+  margin-top: -2px;
+  height: 0px;
+  transition: height 300ms ease-in;
+  overflow: hidden;
+  border-bottom: 2px dashed var(--main-text-color);
+}
+
+.dev-mode li {
+  justify-content: space-between;
+  display: flex;
+}
+
+#dotted-menu:checked+.dotted-menu {
+  visibility: visible;
+  opacity: 1;
+}
+
+.dotted-icon-checkbox {
+  position: fixed;
+  top: 0;
+  left: 9999px;
+}
+
+.dotted-icon {
+  height: 24px;
+  width: 24px;
+  transition: background 0.3s;
+  cursor: pointer;
+  transform: translate3d(-50%, -50%, 0px);
+  display: inline-block;
+}
+
+.dotted-icon:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0px);
+  height: 3px;
+  width: 3px;
+  background-color: var(--main-highlight-color);
+  box-shadow: 0px -6px 0 0 var(--main-highlight-color), 0px 6px 0 0 var(--main-highlight-color);
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dotted-menu {
+  position: relative;
+  top: 50%;
+}
+
+.dotted-menu:hover:after {
+  box-shadow: 5px -5px 0 0 var(--main-on-hover-color), -5px -5px 0 0 var(--main-on-hover-color);
+  background-color: var(--main-on-hover-color);
+}
+
+#dotted-menu:checked+.dotted-menu:after {
+  box-shadow: 4px -4px 0 0 var(--main-on-hover-color), -4px -4px 0 0 var(--main-on-hover-color), -4px 4px 0 0 var(--main-on-hover-color), 4px 4px 0 0 var(--main-on-hover-color);
+  background-color: var(--main-on-hover-color);
+}
+
+.highlight-picker span {
+  width: 26px;
+  height: 26px;
+  top: 25%;
+  margin-right: 12px;
+  left: 10px;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.highlight-picker .active:after {
+  content: "";
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--main-highlight-color) !important;
+  position: absolute;
+  border-radius: 50%;
+  box-sizing: border-box;
+  left: -5px;
+  top: -5px;
+}
+
+.highlight-picker span:hover:after {
+  content: "";
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--main-on-hover-color);
+  position: absolute;
+  border-radius: 50%;
+  box-sizing: border-box;
+  left: -5px;
+  top: -5px;
+}
+
+.toggle--checkbox {
+  display: none;
+}
+
+.toggle--checkbox:checked~.background {
+    background: var(--main-background-color);
+}
+
+.toggle--checkbox:checked+.toggle--label {
+    background: var(--main-background-color);
+    border-color: var(--main-on-hover-color);
+}
+
+.toggle--checkbox:checked+.toggle--label:before {
+  background: var(--main-text-color);
+  border-color: var(--main-on-hover-color);
+  animation-name: switch;
+  animation-duration: 350ms;
+  animation-fill-mode: forwards;
+}
+
+.toggle--label {
+    width: 54px;
+    height: 27px;
+    background: var(--main-highlight-color);
+    border-radius: 25px;
+    border: 2px solid var(--main-on-hover-color);
+    display: flex;
+    position: relative;
+    transition: all 350ms ease-in;
+    top: 25%;
+    cursor: pointer;
+}
+
+.toggle--label:before {
+    animation-name: reverse;
+    animation-duration: 350ms;
+    animation-fill-mode: forwards;
+    transition: all 350ms ease-in;
+    content: "";
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--main-on-hover-color);
+    top: 2px;
+    left: 2px;
+    position: absolute;
+    border-radius: 20px;
+    background: var(--main-text-color);
+}
+
+@keyframes switch {
+    0% {
+        left: 2px;
+    }
+
+    60% {
+        left: 15px;
+        width: 30px;
+    }
+
+    100% {
+        left: 28px;
+        width: 20px;
+    }
+}
+
+@keyframes reverse {
+    0% {
+        left: 28px;
+        width: 20px;
+    }
+
+    60% {
+        left: 12px;
+        width: 30px;
+    }
+
+    100% {
+        left: 2px;
+    }
+}
+.blue {
+    background: #1554F4;
+}
+.red {
+    background: #E00D14;
+}
+.green {
+    background: #1AC40E;
+}
+
+.socials span {
+    font-family: 'icon';
+    font-size: 26px;
+    margin-left: 10px;
+}
+
+.ic-linkedin:before {
+  content: "\eaca";
+}
+
+.ic-github:before {
+  content: "\eab0";
+}
+
+.ic-mail:before {
+  content: "\e945";
+}
+
+@media(min-width: 576px) {
+  .profile {
+    width: 65%;
+    left: 18%;
+  }
+}
+
+@media(min-width: 768px) {
+  .profile {
+    width: 50%;
+    left: 25%;
+  }
+}
+
+@font-face {
+  font-family: 'icon';
+  src: url('../fonts/icons.woff') format("woff");
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main-card-color: hsl(var(--current-hue), 3%, 4%);
+    --main-color: var(--current-hue), 15%, 4%;
+    --main-background-color: linear-gradient(hsl(var(--main-color), 0.8),
+        hsl(var(--main-color), 1));
+    --main-text-color: hsl(var(--current-hue), 20%, 96%);
+    --main-shadow-color: hsl(var(--main-color), 0.0);
+    --main-on-hover-color: hsl(var(--current-hue), 40%, 25%);
+    --main-highlight-color: hsl(var(--current-hue), 45%, 50%);
+  }
+
+  .light-theme {
+    --main-card-color: hsl(var(--current-hue), 5%, 97%);
+    --main-color: var(--current-hue), 70%, 92% ;
+    --main-background-color: linear-gradient(hsl(var(--main-color), 0.8),
+      hsl(var(--main-color), 1));
+    --main-text-color: hsl(var(--current-hue), 70%, 4%);
+    --main-shadow-color: hsla(var(--current-hue), 30%, 2%, 0.5);
+    --main-on-hover-color: hsl(var(--current-hue), 70%, 32%);
+    --main-highlight-color: hsl(var(--current-hue), 70%, 52%);
+  }
+}
