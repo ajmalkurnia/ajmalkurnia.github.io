@@ -154,6 +154,8 @@ span.highlight {
 .content {
   overflow: scroll;
   margin: 0 1.5rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .short-about {
