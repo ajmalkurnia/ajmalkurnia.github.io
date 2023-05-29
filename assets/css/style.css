@@ -12,7 +12,7 @@
   --main-text-color: hsl(var(--current-hue), 70%, 4%);
   --main-shadow-color: hsla(var(--current-hue), 30%, 2%, 0.5);
   --main-on-hover-color: hsl(var(--current-hue), 70%, 32%);
-  --main-highlight-color: hsl(var(--current-hue), 70%, 52%);
+  --main-highlight-color: hsl(var(--current-hue), 45%, 50%);
 }
 
 .dark-theme {
@@ -23,7 +23,7 @@
   --main-text-color: hsl(var(--current-hue), 20%, 96%);
   --main-shadow-color: hsl(var(--main-color), 0.0);
   --main-on-hover-color: hsl(var(--current-hue), 40%, 25%);
-  --main-highlight-color: hsl(var(--current-hue), 45%, 50%);
+  --main-highlight-color: hsl(var(--current-hue), 70%, 52%);
 }
 
 body {
@@ -44,37 +44,97 @@ a:hover {
   text-decoration: none;
 }
 
+a.btn {
+  padding: 0 0.25rem;
+  border: solid 1px;
+  border-radius: 5px;
+}
+
+a.btn:hover {
+  background-color: var(--main-highlight-color);
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", sans-serif;
+}
+
+main {
+  background: url("../img/background_bw.jpg") top right no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+}
+
+html, body, section {
+  block-size: 100%;
+}
+
+html {
+  scroll-snap-type: y mandatory;
+}
+
+section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+span.highlight {
+  color: var(--main-highlight-color);
 }
 
 /*--------------------------------------------------------------
 # main-banner
 --------------------------------------------------------------*/
-#main-banner {
-  width: 100%;
-  height: 100vh;
-  background: var(--main-background-color),
-    url("../img/background_bw.jpg") top right no-repeat;
-  background-size: cover;
+#container {
   transition: --main-background-color 2s ease;
-  position: absolute;
+  position: relative;
+  /* top: 2rem; */
+  display: flex;
+  align-self: center;
+  justify-content: center;
 }
 
-.profile {
+#profile {
+  --current-hue: var(--blue);
+  background: var(--main-background-color);
+}
+
+#experience1 {
+  --current-hue: var(--red);
+  background: var(--main-background-color);
+}
+
+#experience2 {
+  --current-hue: var(--green);
+  background: var(--main-background-color);
+}
+
+#background {
+  --current-hue: var(--blue);
+  background: var(--main-background-color);
+}
+
+
+.container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 80%;
-  left: 10%;
-  position: relative;
-  top: 10%;
   background-color: var(--main-card-color);
   box-shadow: 0px 1px 15px 3px var(--main-shadow-color);
   transition: all 0.2s ease;
   border-radius: 10px;
+  margin: 0 2rem;
+  max-width: 100%;
+  max-height: 95%;
 }
+
 
 .intro {
   margin: 1rem 2rem;
@@ -91,8 +151,9 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
-.intro span {
-  color: var(--main-highlight-color);
+.content {
+  overflow: scroll;
+  margin: 0 1.5rem;
 }
 
 .short-about {
@@ -354,15 +415,34 @@ li.fe {
   content: "\e945";
 }
 
+.contact {
+  margin-top: 1rem ;
+  margin-bottom: 1.5rem ;
+}
+
+#fab {
+  height: 54px;
+  width: 54px;
+  border-radius: 300px;
+  color: var(--main-text-color);
+  background-color: var(--main-highlight-color);
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  font-size: 36px;
+  text-align: center;
+  font-weight: bolder;
+}
+
 @media(min-width: 576px) {
-  .profile {
+  .container {
     width: 65%;
     left: 18%;
   }
 }
 
 @media(min-width: 768px) {
-  .profile {
+  .container {
     width: 50%;
     left: 25%;
   }
@@ -382,7 +462,7 @@ li.fe {
     --main-text-color: hsl(var(--current-hue), 20%, 96%);
     --main-shadow-color: hsl(var(--main-color), 0.0);
     --main-on-hover-color: hsl(var(--current-hue), 40%, 25%);
-    --main-highlight-color: hsl(var(--current-hue), 45%, 50%);
+    --main-highlight-color: hsl(var(--current-hue), 70%, 52%);
   }
 
   .light-theme {
@@ -393,6 +473,6 @@ li.fe {
     --main-text-color: hsl(var(--current-hue), 70%, 4%);
     --main-shadow-color: hsla(var(--current-hue), 30%, 2%, 0.5);
     --main-on-hover-color: hsl(var(--current-hue), 70%, 32%);
-    --main-highlight-color: hsl(var(--current-hue), 70%, 52%);
+    --main-highlight-color: hsl(var(--current-hue), 45%, 50%);
   }
 }
