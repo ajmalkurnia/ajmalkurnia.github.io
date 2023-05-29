@@ -58,5 +58,29 @@
       });
   });
 
+  function checkVisible(elm) {
+    var rect = elm.getBoundingClientRect();
+
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /* or $(window).height() */
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth) /* or $(window).width() */
+    ) 
+  }
+  const elements = document.querySelectorAll('.job-title > li');
+  let active = 0;
+  setInterval(()=>{
+    if( ++active >= elements.length) active = 0;
+    console.log(elements, active)
+    //poor support for options
+    if (checkVisible(document.getElementById("profile"))) {
+      elements[active].scrollIntoView({
+        behavior:'smooth',
+        block:'end' //Where to align current item: 'start', 'end' or 'center'
+      })
+    }
+  }, 3000)
+
 
 })()
